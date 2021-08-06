@@ -3,15 +3,6 @@ import ReactDOM from 'react-dom';
 
 import '../assets/stylesheets/application.scss';
 
-const HelloOg = ({ name }) => {
-  return (
-    <div>
-      Hello,
-      {name}
-    </div>
-  );
-};
-
 class Hello extends Component {
   constructor(props) {
     super(props);
