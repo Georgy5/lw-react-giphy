@@ -1,5 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import giphy from 'giphy-api';
+
 import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
@@ -9,20 +11,26 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      gifs: [
-        { id: "l10bV0Vt2MiyucTMjZ" },
-        { id: "xT9IgDEI1iZyb2wqo8" },
-        { id: "ozf26DV8FqaCpkYt6n" }
-      ],
+      gifs: [],
       selectedGifId: "l10bV0Vt2MiyucTMjZ"
     };
+  }
+
+  search = (query) => {
+    giphy('CzbNOebmLACr6Tj3RrLMFslUoQapzKNI').search({
+      q: query,
+      rating: 'pg-13',
+      limit: 20
+    }, (error, result) => {
+      this.setState({ gifs: result.data });
+    });
   }
 
   render() {
     return (
       <div>
         <div className="left-scene">
-          <SearchBar />
+          <SearchBar searchFunction={this.search} />
           <dir className="selected-gif">
             <Gif id={this.state.selectedGifId} />
           </dir>
