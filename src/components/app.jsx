@@ -10,7 +10,7 @@ export default class App extends Component {
         <dix className="left-scene">
           <SearchBar />
           <dir className="selected-gif">
-            <Gif />
+            <Gif id="l10bV0Vt2MiyucTMjZ"/>
           </dir>
         </dix>
         <dix className="right-scene"></dix>
