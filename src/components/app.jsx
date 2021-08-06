@@ -1,26 +1,34 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class App extends Component {
-  render() {
-    const gifs = [
-      { id: "l10bV0Vt2MiyucTMjZ" },
-      { id: "xT9IgDEI1iZyb2wqo8" }
-    ];
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      gifs: [
+        { id: "l10bV0Vt2MiyucTMjZ" },
+        { id: "xT9IgDEI1iZyb2wqo8" },
+        { id: "ozf26DV8FqaCpkYt6n" }
+      ],
+      selectedGifId: "l10bV0Vt2MiyucTMjZ"
+    };
+  }
+
+  render() {
     return (
       <div>
         <div className="left-scene">
           <SearchBar />
           <dir className="selected-gif">
-            <Gif id="l10bV0Vt2MiyucTMjZ" />
+            <Gif id={this.state.selectedGifId} />
           </dir>
         </div>
         <div className="right-scene">
-          <GifList gifs={gifs} />
+          <GifList gifs={this.state.gifs} />
         </div>
       </div>
     );
