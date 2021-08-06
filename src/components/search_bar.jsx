@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const SearchBar = () => {
-  return (
-    <>
-    </>
-  );
-};
-
-export default SearchBar;
+// eslint-disable-next-line react/prefer-stateless-function
+export default class SearchBar extends Component {
+  render() {
+    return (
+      <input type="text" className="form-search" />
+    );
+  }
+}
