@@ -6,6 +6,8 @@ import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
 
+const GIPHY_API_KEY = 'CzbNOebmLACr6Tj3RrLMFslUoQapzKNI'
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,16 +16,23 @@ export default class App extends Component {
       gifs: [],
       selectedGifId: "l10bV0Vt2MiyucTMjZ"
     };
+
+    // This binding is necessary to make `this` work in the callback
+    this.selectGif = this.selectGif.bind(this);
   }
 
   search = (query) => {
-    giphy('CzbNOebmLACr6Tj3RrLMFslUoQapzKNI').search({
+    giphy(GIPHY_API_KEY).search({
       q: query,
       rating: 'pg-13',
       limit: 20
     }, (error, result) => {
       this.setState({ gifs: result.data });
     });
+  }
+
+  selectGif(id) {
+    this.setState({ selectedGifId: id });
   }
 
   render() {
@@ -36,7 +45,7 @@ export default class App extends Component {
           </dir>
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} />
+          <GifList gifs={this.state.gifs} selectGif={this.selectGif} />
         </div>
       </div>
     );
