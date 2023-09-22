@@ -3,31 +3,33 @@ const path = require('path');
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
+  },
+  devServer: {
+    static: path.resolve(__dirname, './dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: '!!html-loader!templates/index.html'
     })
   ],
-  devtool: 'sourcemap',
   mode: "development",
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: ['babel-loader']
       },
       {
         test: /\.s?css$/,
         exclude: /node_modules/,
-        loaders: [ 'style-loader', 'css-loader' ]
+        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: ['html-loader']
       },
     ]
   },
